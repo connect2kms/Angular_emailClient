@@ -1,40 +1,30 @@
 import { Injectable } from '@angular/core';
-import {
-  AbstractControl,
-  AsyncValidator,
-  ValidationErrors,
-} from '@angular/forms';
+import { AsyncValidator, FormControl } from '@angular/forms';
+import { map, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 import { AuthService } from '../auth.service';
 
-import { map, catchError, of } from 'rxjs';
-
-import { Observable } from 'rxjs';
-
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class UniqueUsername implements AsyncValidator {
   constructor(private authService: AuthService) {}
 
-  validate = (
-    control: AbstractControl
-  ): Observable<ValidationErrors | null> => {
+  validate = (control: FormControl) => {
     const { value } = control;
 
     return this.authService.usernameAvailable(value).pipe(
-      map((value) => {
+      map(value => {
         if (value.available) {
           return null;
         }
-        return null;
       }),
-      catchError((err) => {
-        //console.log(err);
+      catchError(err => {
         if (err.error.username) {
-          return of({ nonUniqueUser: true });
+          return of({ nonUniqueUsername: true });
         } else {
-          return of({ serverError: true });
+          return of({ noConnection: true });
         }
       })
     );
