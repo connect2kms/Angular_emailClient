@@ -8,16 +8,14 @@ interface EmailSummary {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class EmailService {
-  rootURL = 'https://api.angular-email.com';
+  rootUrl = 'https://api.angular-email.com';
 
   constructor(private http: HttpClient) {}
 
   getEmails() {
-    return this.http.get<EmailSummary[]>(this.rootURL + '/emails', {
-      withCredentials: true,
-    });
+    return this.http.get<EmailSummary[]>(`${this.rootUrl}/emails`);
   }
 }

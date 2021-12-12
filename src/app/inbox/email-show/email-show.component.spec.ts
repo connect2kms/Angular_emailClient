@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmailIndexComponent } from './email-index.component';
+import { EmailShowComponent } from './email-show.component';
 
-describe('EmailIndexComponent', () => {
-  let component: EmailIndexComponent;
-  let fixture: ComponentFixture<EmailIndexComponent>;
+describe('EmailShowComponent', () => {
+  let component: EmailShowComponent;
+  let fixture: ComponentFixture<EmailShowComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EmailIndexComponent ]
+      declarations: [ EmailShowComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EmailIndexComponent);
+    fixture = TestBed.createComponent(EmailShowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
